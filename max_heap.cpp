@@ -42,7 +42,44 @@ class heap{
 
 
     }
+   
+   void delete_ele(){
+      
+      if(size==0){
+        cout<<"empty";
+        return;
+      }
+      this->arr[1]=this->arr[size];
+      size--;
+      int idx=1;
 
+      while(idx<size){
+        int left=idx*2;
+        int right=idx*2+1;
+
+        if(right<=size ){
+
+              if(arr[idx]<arr[left] and arr[left]>arr[right]){
+                swap(arr[idx],arr[left]);
+                idx=left;
+              }
+              else if(arr[idx]<arr[right] and arr[right]>arr[left]){
+                swap(arr[idx],arr[right]);
+                idx=right;
+              }
+        }
+        else if(left<=size){
+            if(arr[idx]<arr[left]){
+                swap(arr[idx],arr[left]);
+                idx=left;
+            }
+        }
+        else return;
+       
+
+      }
+
+   }
     void print(){
 
         for(int i=1;i<size+1;i++){
@@ -69,7 +106,11 @@ int main(){
    hp.insert_ele(0);
 
    hp.print();
+   cout<<endl;
 
+   hp.delete_ele();
+   hp.delete_ele();
+   hp.print();
 
 
 }
